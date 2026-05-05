@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Category{% endblock %}
+
+{% block body %}
+<head>
+
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+<link rel="stylesheet" href="{{asset('list.css')}}"> 
+</head>
+
+<div class="example-wrapper">
+<a href="{{url('admin_categorie_create')}}" class="btn btn-primary">Ajouter Category</a>
+    <table class="table table-hover">
+    <thead>
+        <tr>
+        <th scope="col">Libelle</th>
+        <th scope="col">Description</th>
+        </tr>
+    </thead>
+        {% for l in category %}
+            <tr class="table-light">
+                <td>{{l.libelle}}</td>
+                <td>{{l.description}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <div class="navigation">
+    {{ knp_pagination_render(category, '@KnpPaginator/Pagination/bootstrap_v5_pagination.html.twig') }}
+</div>
+</div>
+</div>
+{% endblock %}

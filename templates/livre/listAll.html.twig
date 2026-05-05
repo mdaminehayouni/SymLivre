@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello lController!{% endblock %}
+
+{% block body %}
+<head>
+
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+<link rel="stylesheet" href="{{asset('list.css')}}"> 
+</head>
+<div class="example-wrapper">
+    <a href="{{path('admin_livres_create')}}" class="btn btn-primary">Ajouter Livre</a>
+    <table class="table table-hover">
+    <thead>
+        <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Titre</th>
+        <th scope="col">Prix</th>
+        <th scope="col">Edition</th>
+        <th scope="col">Categorie</th>
+        <th scope="col">Action</th>
+        </tr>
+    </thead>
+        {% for l in book %}
+            <tr class="table-light">
+                <td>{{l.id}}</td>
+                <td>{{l.titre}}</td>
+                <td>{{l.prix}}</td>
+                <td>{{l.date|date('d/m/y')}}</td>
+                <td>{{l.category.getLibelle()}}</td>
+                <td><a href="/find/{{l.id}}" class="btn btn-primary">Voir details</a>
+                    <a href="/admin/livres/delete/{{l.id}}" class="btn btn-danger">Supprimer</a>
+                    <a href="/admin/livres/edit/{{l.id}}" class="btn btn-success">Edit</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <div class="navigation">
+    {{ knp_pagination_render(book, '@KnpPaginator/Pagination/bootstrap_v5_pagination.html.twig') }}
+</div>
+</div>
+</div>
+{% endblock %}

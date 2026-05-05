@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello lController!{% endblock %}
+
+{% block body %}
+
+<link rel="stylesheet" href="{{ asset('list.css') }}">
+
+<div class="card mb-3 custom-card">
+  <img src="{{ book.image }}" class="custom-img">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Prix : {{ book.prix }}</li>
+    <li class="list-group-item">Resume : {{ book.resume }}</li>
+    <li class="list-group-item">Editeur : {{ book.editeur }}</li>
+    <li class="list-group-item">Date Edition : {{ book.date|date('d/m/y') }}</li>
+  </ul>
+  <a href="{{path('app_livre')}}" class="btn btn-primary">Retour</a>
+</div>
+
+{% endblock %}
